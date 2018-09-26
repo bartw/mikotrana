@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { DragDropContext } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 import List from "./List";
-import Workout from "./Workout";
+import WorkoutComponent from "./WorkoutComponent";
 import SegmentComponent from "./Segment";
+import { Workout, WorkoutEvent } from "./workout/Workout";
 
 class Segment {
   private _name: string;
@@ -20,7 +21,7 @@ class Segment {
 interface Props {}
 
 interface State {
-  segments: string[];
+  workout: Workout;
 }
 
 class Content extends Component<Props, State> {
@@ -28,12 +29,12 @@ class Content extends Component<Props, State> {
     super(props);
 
     this.state = {
-      segments: []
+      workout: Workout.empty()
     };
   }
 
-  handleDrop = (segment: string) => {
-    this.setState(prevState => ({ segments: [...prevState.segments, segment] }));
+  handleEvent = (event: WorkoutEvent) => {
+    this.setState(prevState => ({ workout: prevState.workout.push(event) }));
   };
 
   render() {
@@ -46,7 +47,10 @@ class Content extends Component<Props, State> {
             <SegmentComponent name={segment.name} />
           )}
         />
-        <Workout segments={this.state.segments} onDrop={this.handleDrop} />
+        <WorkoutComponent
+          workout={this.state.workout}
+          onEvent={this.handleEvent}
+        />
       </div>
     );
   }

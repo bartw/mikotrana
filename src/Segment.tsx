@@ -6,6 +6,8 @@ import {
   DragSourceMonitor,
   DragSourceCollector
 } from "react-dnd";
+import { AddSegmentToWorkoutEvent } from "./workout/Workout";
+import Uuid from "./Uuid";
 
 interface CollectedProps {
   isDragging?: boolean;
@@ -19,7 +21,7 @@ interface Props extends CollectedProps {
 const dragSource = {
   beginDrag(props: Props) {
     return {
-      name: props.name,
+      event: new AddSegmentToWorkoutEvent(Uuid.generate())
     };
   }
 };
