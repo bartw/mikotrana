@@ -1,4 +1,4 @@
-import React, { ReactText, ReactNode, ReactElement } from "react";
+import React, { ReactText, ReactNode } from "react";
 import ListItem from "./ListItem";
 
 interface Props<T> {
