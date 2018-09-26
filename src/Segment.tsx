@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   DragSource,
   ConnectDragSource,
@@ -19,7 +19,7 @@ interface Props extends CollectedProps {
 const dragSource = {
   beginDrag(props: Props) {
     return {
-      name: props.name
+      name: props.name,
     };
   }
 };
@@ -32,15 +32,13 @@ const collect: DragSourceCollector<CollectedProps> = (
   isDragging: monitor.isDragging()
 });
 
-const ListItem = ({ name, isDragging, connectDragSource }: Props) =>
+const Segment = ({ name, isDragging, connectDragSource }: Props) =>
   connectDragSource
     ? connectDragSource(
-        <li style={{ opacity: isDragging ? 0.5 : 1 }}>{name}</li>
+        <div style={{ opacity: isDragging ? 0.5 : 1 }}>{name}</div>
       )
     : null;
 
-const DraggableListItem = DragSource("workoutType", dragSource, collect)(
-  ListItem
-);
+const DraggableSegment = DragSource("segment", dragSource, collect)(Segment);
 
-export default DraggableListItem;
+export default DraggableSegment;

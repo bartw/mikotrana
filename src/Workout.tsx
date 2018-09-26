@@ -13,8 +13,8 @@ interface CollectedProps {
 }
 
 interface WorkoutProps extends CollectedProps {
-  types: string[];
-  onDrop: (type: string) => void;
+  segments: string[];
+  onDrop: (segment: string) => void;
 }
 
 const target = {
@@ -31,13 +31,13 @@ const collect: DropTargetCollector<CollectedProps> = (
   isOver: monitor.isOver()
 });
 
-const Workout = ({ connectDropTarget, isOver, types }: WorkoutProps) =>
+const Workout = ({ connectDropTarget, isOver, segments }: WorkoutProps) =>
   connectDropTarget
     ? connectDropTarget(
         <div style={{ border: isOver ? "3px solid white" : "1px solid white" }}>
-          this is your workout: {types.join(", ")}
+          this is your workout: {segments.join(", ")}
         </div>
       )
     : null;
 
-export default DropTarget("workoutType", target, collect)(Workout);
+export default DropTarget("segment", target, collect)(Workout);
