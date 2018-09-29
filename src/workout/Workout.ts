@@ -1,16 +1,4 @@
-import Uuid from "../Uuid";
-
-abstract class Event {
-  private _id: string;
-
-  constructor() {
-    this._id = Uuid.generate();
-  }
-
-  get id() {
-    return this._id;
-  }
-}
+import Event from "../Event";
 
 export abstract class WorkoutEvent extends Event {
   private _segmentId: string;

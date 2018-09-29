@@ -5,6 +5,9 @@ import List from "./List";
 import WorkoutComponent from "./WorkoutComponent";
 import SegmentComponent from "./Segment";
 import { Workout, WorkoutEvent } from "./workout/Workout";
+import DraggableCard from "./DraggableCard";
+import { AddSegmentToWorkoutEvent } from "./workout/Workout";
+import Uuid from "./Uuid";
 
 class Segment {
   private _name: string;
@@ -40,6 +43,13 @@ class Content extends Component<Props, State> {
   render() {
     return (
       <div>
+        <DraggableCard
+          eventSupplier={() => new AddSegmentToWorkoutEvent(Uuid.generate())}
+          dragType="segment"
+          type="Segment"
+          title="Interval"
+          description="Exercise for a limited time"
+        />
         <List
           items={[new Segment("Interval"), new Segment("Set")]}
           keyProvider={(segment: Segment) => segment.name}
