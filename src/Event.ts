@@ -1,4 +1,4 @@
-import Uuid from "Uuid";
+import Uuid from "uuid";
 
 abstract class Event {
   private _id: string;

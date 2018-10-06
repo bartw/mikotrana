@@ -7,7 +7,7 @@ import {
   DragSourceCollector
 } from "react-dnd";
 import { AddSegmentToWorkoutEvent } from "./workout/Workout";
-import Uuid from "Uuid";
+import Uuid from "uuid";
 
 interface CollectedProps {
   isDragging?: boolean;
