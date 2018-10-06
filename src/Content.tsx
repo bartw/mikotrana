@@ -7,7 +7,7 @@ import SegmentComponent from "./Segment";
 import { Workout, WorkoutEvent } from "./workout/Workout";
 import DraggableCard from "./DraggableCard";
 import { AddSegmentToWorkoutEvent } from "./workout/Workout";
-import Uuid from "./Uuid";
+import Uuid from "Uuid";
 
 class Segment {
   private _name: string;
